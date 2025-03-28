@@ -13,7 +13,6 @@ public class Main {
         scanner.nextLine();
 
         List<Employee> employees = new ArrayList<>();
-        Employee employee = new Employee();
 
         for (int i = 0; i < n; i++) {
             System.out.println("Employee #" + (i + 1));
@@ -33,21 +32,23 @@ public class Main {
         System.out.print("Enter the id of the employee who will receive a raise: ");
         String id = scanner.nextLine();
 
-        System.out.print("Enter the percentage: ");
-        double percentage = scanner.nextDouble();
+        String result = Employee.verifyId(employees, id);
 
-        //for (int i = 0; i < n; i++) {
-        //    if (employee.getId() == id) {
-        //        employee.raiseSalary(percentage);
-        //    }
-        //}
+        if (result == null) {
+            System.out.println("Id doesn't exist.");
+        } else {
+            System.out.print("Enter the percentage: ");
+            double percentage = scanner.nextDouble();
+
+            for (Employee employee : employees) {
+                if (employee.getId().equals(result))
+                    employee.raiseSalary(percentage);
+            }
+        }
 
         System.out.println("List of employees:");
-        for (Employee emp : employees) {
-            if (emp.getId().equals(id)) {
-                emp.raiseSalary(percentage);
-            }
 
+        for (Employee emp : employees) {
             System.out.println(emp);
         }
 

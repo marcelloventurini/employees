@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.List;
+
 public class Employee {
     private String name;
     private String id;
@@ -36,6 +38,16 @@ public class Employee {
 
     public void raiseSalary(double percentage) {
         salary += salary * (percentage / 100);
+    }
+
+    public static String verifyId(List<Employee> employees, String id) {
+        for (int i = 0; i < employees.size(); i++) {
+            if (employees.get(i).getId().equals(id)) {
+                return id;
+            }
+        }
+
+        return null;
     }
 
     @Override
